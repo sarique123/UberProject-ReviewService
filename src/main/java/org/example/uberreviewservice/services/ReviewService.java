@@ -13,6 +13,7 @@ import java.util.List;
 public class ReviewService implements CommandLineRunner {
     private final ReviewRepository reviewRepository;
     public ReviewService(ReviewRepository reviewRepository){
+
         this.reviewRepository = reviewRepository;
     }
 
@@ -32,6 +33,6 @@ public class ReviewService implements CommandLineRunner {
         for(Review review : reviews){
             System.out.println(review.getContent());
         }
-        reviewRepository.deleteById(1L);
+        //reviewRepository.deleteById(1L);
     }
 }
