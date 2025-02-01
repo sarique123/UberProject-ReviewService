@@ -15,7 +15,7 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)   // IDENTITY means auto increment
+    @GeneratedValue(strategy = GenerationType.IDENTITY)   // IDENTITY means auto increment
     private Long id;
 
     @Column(nullable = false)
