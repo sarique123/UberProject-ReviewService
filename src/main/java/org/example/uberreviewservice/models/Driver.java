@@ -23,6 +23,6 @@ public class Driver extends BaseModel {
     @Column(nullable = false,unique = true)
     private String LicenceNumber;
 
-    @OneToMany(mappedBy = "driver",cascade = {CascadeType.PERSIST,CascadeType.REMOVE},orphanRemoval = true)
+    @OneToMany(mappedBy = "driver",cascade = CascadeType.PERSIST)
     private List<Booking> bookings = new ArrayList<>();
 }
