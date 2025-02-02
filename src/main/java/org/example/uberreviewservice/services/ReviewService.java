@@ -52,10 +52,10 @@ public class ReviewService implements CommandLineRunner {
         //reviewRepository.deleteById(1L);
 
 
-        Booking booking = bookingRepository.findById(1L).get();
-        if(booking != null){
-            bookingRepository.delete(booking);
-        }
+//        Booking booking = bookingRepository.findById(1L).get();
+//        if(booking != null){
+//            bookingRepository.delete(booking);
+//        }
 
     }
 }

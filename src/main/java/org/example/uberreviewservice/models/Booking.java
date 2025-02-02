@@ -30,4 +30,12 @@ public class Booking extends BaseModel{
 
     @Column(nullable = false)
     private Long TotalDistance;
+
+    @ManyToOne
+    @JoinColumn(name = "driver_id",nullable = false)
+    private Driver driver;
+
+    @ManyToOne
+    @JoinColumn(name = "passenger_id",nullable = false)
+    private Passenger passenger;
 }
