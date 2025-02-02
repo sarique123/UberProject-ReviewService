@@ -9,7 +9,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-
 public class PassengerReview extends Review{
     @Column(nullable = false)
     private String passengerReviewComment;
