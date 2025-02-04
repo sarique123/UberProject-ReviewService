@@ -12,10 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
 @Setter
 @Builder
 @NoArgsConstructor
+@Getter
 @AllArgsConstructor
 public class Driver extends BaseModel {
 
