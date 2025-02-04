@@ -28,7 +28,7 @@ public class ReviewService implements CommandLineRunner {
     @Transactional
     public void run(String... args) throws Exception {
 
-//        System.out.println("*****************");
+        System.out.println("*****************");
 ////
 //        Review r = Review.builder()
 //                .content("Poor ride quality")
@@ -79,15 +79,15 @@ public class ReviewService implements CommandLineRunner {
 
         // N + 1 Problem solution
 
-        List<Long> driverIds = new ArrayList<>(Arrays.asList(1L,2L));
-        List<Driver> drivers = driverRepository.findAllByIdIn(driverIds);
-
-//        List<Booking> bookings = bookingRepository.findAllByDriverIn(drivers);
-
-        for(Driver driver : drivers){
-            List<Booking> bookings = driver.getBookings();
-            bookings.forEach(booking -> System.out.println(booking.getId()));
-        }
+//        List<Long> driverIds = new ArrayList<>(Arrays.asList(1L,2L));
+//        List<Driver> drivers = driverRepository.findAllByIdIn(driverIds);
+//
+////        List<Booking> bookings = bookingRepository.findAllByDriverIn(drivers);
+//
+//        for(Driver driver : drivers){
+//            List<Booking> bookings = driver.getBookings();
+//            bookings.forEach(booking -> System.out.println(booking.getId()));
+//        }
 
     }
 }
