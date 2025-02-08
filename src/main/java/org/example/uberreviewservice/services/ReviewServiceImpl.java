@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class ReviewServiceImpl implements ReviewService{
 
-    private ReviewRepository reviewRepository;
+    private final  ReviewRepository reviewRepository;
     public ReviewServiceImpl(ReviewRepository reviewRepository) {
         this.reviewRepository = reviewRepository;
     }
@@ -18,16 +18,22 @@ public class ReviewServiceImpl implements ReviewService{
         return reviewRepository.findById(id).get();
     }
 
-    public List<Review> findAllReviews() {
+    public List<Review> findAllReviews(Double rating) {
+        if(rating != null){
+            return reviewRepository.findAllByRatingLessThanEqual(rating);
+        }
         return reviewRepository.findAll();
     }
 
-    public boolean deleteReviewById(Long id) {
+    public Review createReview(Review review){
+        return reviewRepository.save(review);
+    }
+
+    public void deleteReviewById(Long id){
         try{
             reviewRepository.deleteById(id);
-            return true;
         } catch (Exception e) {
-            return false;
+            throw new RuntimeException(e);
         }
     }
 }

@@ -1,5 +1,8 @@
 package org.example.uberreviewservice.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -22,4 +25,9 @@ public class Review extends BaseModel{
     private String content;
 
     private Double rating;
+
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(nullable = false)
+    @JsonManagedReference
+    private Booking booking;   // we have defined a 1 : 1 mapping between review and  Booking
 }

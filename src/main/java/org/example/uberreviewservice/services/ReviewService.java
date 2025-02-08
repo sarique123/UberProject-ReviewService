@@ -9,7 +9,7 @@ import java.util.List;
 public interface ReviewService {
     public Review findReviewById(Long id);
 
-    public List<Review> findAllReviews();
+    public List<Review> findAllReviews(Double rating);
 
-    public boolean deleteReviewById(Long id);
+    public void deleteReviewById(Long id);
 }

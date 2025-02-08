@@ -1,5 +1,6 @@
 package org.example.uberreviewservice.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,9 +13,6 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Booking extends BaseModel{
-
-    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
-    private Review review;   // we have defined a 1 : 1 mapping between review and  Booking
 
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)

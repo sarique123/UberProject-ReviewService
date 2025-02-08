@@ -10,9 +10,9 @@ import java.util.List;
 @Repository
 public interface ReviewRepository extends JpaRepository<Review,Long> {
 
-    Integer countAllByRatingLessThanEqual(Integer rating);
+    Integer countAllByRatingLessThanEqual(Double rating);
 
-    List<Review> findAllByRatingLessThanEqual(Integer rating);
+    List<Review> findAllByRatingLessThanEqual(Double rating);
 
     List<Review> findAllByCreatedAtBefore(Date createdAt);
 

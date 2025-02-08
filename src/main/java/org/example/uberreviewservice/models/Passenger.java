@@ -1,5 +1,6 @@
 package org.example.uberreviewservice.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,5 +19,6 @@ public class Passenger extends BaseModel{
     private String name;
 
     @OneToMany(mappedBy = "passenger",cascade = CascadeType.PERSIST)
+    @JsonBackReference
     private List<Booking> bookings = new ArrayList<>();
 }
