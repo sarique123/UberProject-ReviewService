@@ -23,11 +23,11 @@ public class Driver extends BaseModel {
     @Column(nullable = false)
     private String name;
 
-//    @Column(nullable = false)
-//    private String phoneNumber;
-//
-//    @Column(nullable = false)
-//    private String address;
+    @Column(nullable = false)
+    private String phoneNumber;
+
+    @Column(nullable = false)
+    private String address;
 
     @Column(nullable = false,unique = true)
     private String licenceNumber;

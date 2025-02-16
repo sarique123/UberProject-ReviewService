@@ -1,4 +1,4 @@
-package org.example.uberreviewservice.Controllers;
+package org.example.uberreviewservice.controllers;
 
 import org.example.uberreviewservice.DTOs.CreateReviewDto;
 import org.example.uberreviewservice.Utils.ErrorResponse;
@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/api/v1/reviews")
@@ -25,7 +27,7 @@ public class ReviewControllers {
     }
 
     @GetMapping
-    public ResponseEntity<?> getAllReviews(@RequestParam(required = false) Double rating){
+    public ResponseEntity<?> getAllReviews(@RequestParam(required = false) Double rating){    // rating for reviews less than this given rating
         List<Review> reviews = reviewServiceImpl.findAllReviews(rating);
         if(reviews.isEmpty()){
             ErrorResponse errorResponse = new ErrorResponse(false,HttpStatus.NOT_FOUND.value(),"There are no reviews","No reviews",LocalDateTime.now());
@@ -37,13 +39,19 @@ public class ReviewControllers {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getReviewById(@PathVariable Long id){
-        Review review = reviewServiceImpl.findReviewById(id);
-        if(review == null){
-            ErrorResponse errorResponse = new ErrorResponse(false,HttpStatus.NOT_FOUND.value(),"Review not found","Review not found",LocalDateTime.now());
+        try{
+            Optional<Review> review = reviewServiceImpl.findReviewById(id);
+            if(review.isPresent()){
+                SuccessResponse<Review> successResponse = new SuccessResponse<>(true, HttpStatus.OK.value(),"Successfully fetched the review",review.get(),LocalDateTime.now());
+                return ResponseEntity.status(HttpStatus.OK).body(successResponse);
+            }else{
+                ErrorResponse errorResponse = new ErrorResponse(false,HttpStatus.NOT_FOUND.value(), "Not found", "Review not found",LocalDateTime.now());
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+            }
+        }catch (Exception e){
+            ErrorResponse errorResponse = new ErrorResponse(false,HttpStatus.NOT_FOUND.value(), e.getMessage(), "Review not found",LocalDateTime.now());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
         }
-        SuccessResponse<Review> successResponse = new SuccessResponse<>(true, HttpStatus.OK.value(),"Successfully fetched the review",review,LocalDateTime.now());
-        return ResponseEntity.status(HttpStatus.OK).body(successResponse);
     }
 
     @PostMapping
@@ -59,7 +67,7 @@ public class ReviewControllers {
             return ResponseEntity.status(HttpStatus.CREATED).body(successResponse);
         } catch (Exception e) {
             ErrorResponse errorResponse = new ErrorResponse(false,HttpStatus.INTERNAL_SERVER_ERROR.value(),e.getMessage(),"Error while creating the review",LocalDateTime.now());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
         }
     }
 
@@ -74,6 +82,4 @@ public class ReviewControllers {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
         }
     }
-
-
 }

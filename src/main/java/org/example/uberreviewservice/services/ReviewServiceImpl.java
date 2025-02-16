@@ -5,6 +5,7 @@ import org.example.uberreviewservice.repositories.ReviewRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReviewServiceImpl implements ReviewService{
@@ -14,8 +15,8 @@ public class ReviewServiceImpl implements ReviewService{
         this.reviewRepository = reviewRepository;
     }
 
-    public Review findReviewById(Long id) {
-        return reviewRepository.findById(id).get();
+    public Optional<Review> findReviewById(Long id) {
+        return reviewRepository.findById(id);
     }
 
     public List<Review> findAllReviews(Double rating) {
