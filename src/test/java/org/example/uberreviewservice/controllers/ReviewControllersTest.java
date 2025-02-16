@@ -1,11 +1,11 @@
 package org.example.uberreviewservice.controllers;
 
 
+import org.example.uberprojectentityservice.models.Booking;
+import org.example.uberprojectentityservice.models.Review;
 import org.example.uberreviewservice.DTOs.CreateReviewDto;
 import org.example.uberreviewservice.Utils.SuccessResponse;
 import org.example.uberreviewservice.adapters.CreateReviewDtoToReviewAdapterImpl;
-import org.example.uberreviewservice.models.Booking;
-import org.example.uberreviewservice.models.Review;
 import org.example.uberreviewservice.services.ReviewServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

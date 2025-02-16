@@ -4,7 +4,7 @@ import org.example.uberreviewservice.DTOs.CreateReviewDto;
 import org.example.uberreviewservice.Utils.ErrorResponse;
 import org.example.uberreviewservice.Utils.SuccessResponse;
 import org.example.uberreviewservice.adapters.CreateReviewDtoToReviewAdapterImpl;
-import org.example.uberreviewservice.models.Review;
+import org.example.uberprojectentityservice.models.Review;
 import org.example.uberreviewservice.services.ReviewServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
